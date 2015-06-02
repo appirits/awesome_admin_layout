@@ -49,6 +49,12 @@
     padding: 0;
     list-style: none;
 
+    i {
+      margin-right: 0.5em;
+      width: 20px;
+      text-align: center;
+    }
+
     a {
       display: block;
       height: 40px;
@@ -56,18 +62,20 @@
       padding: 0 20px;
       white-space: nowrap;
       color: #c3cfd8;
-      transition: color 250ms ease;
-      transition: color 250ms ease, background-color 250ms ease;
       text-decoration: none;
 
       &:hover, &:active {
         color: #fff;
-        background-color: #454e57;
       }
     }
 
     &.active > a {
+      color: #fff;
       background-color: #454e57;
     }
+  }
+
+  li.divider {
+    height: 20px;
   }
 }

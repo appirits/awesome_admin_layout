@@ -1,5 +1,6 @@
 require 'awesome_admin_layout/version'
 require 'awesome_admin_layout/script'
+require 'awesome_admin_layout/item_script'
 require 'awesome_admin_layout/converter'
 
 module AwesomeAdminLayout

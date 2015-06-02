@@ -4,8 +4,14 @@ module AwesomeAdminLayout
       @tree = []
     end
 
-    def item(name)
-      @tree << name
+    def item(name, &block)
+      if block_given?
+        item_script = AwesomeAdminLayout::ItemScript.new(name)
+        item_script.instance_eval(&block)
+        @tree << item_script
+      else
+        @tree << name
+      end
     end
 
     def divider
