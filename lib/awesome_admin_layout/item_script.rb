@@ -20,8 +20,12 @@ module AwesomeAdminLayout
       @item[:icon] = icon
     end
 
+    def badge(badge)
+      @item[:badge] = badge
+    end
+
     def to_s
-      %Q{<li#{' class="active"' if __active?}>#{__link_to __name_with_icon}</li>}
+      %Q{<li#{' class="active"' if __active?}>#{__link_to("#{__badge}#{__name_with_icon}")}</li>}
     end
 
     private
@@ -41,6 +45,16 @@ module AwesomeAdminLayout
     def __icon
       return unless @item[:icon]
       %Q{<i class="fa fa-#{@item[:icon]}"></i>}
+    end
+
+    def __badge
+      return unless @item[:badge]
+      case @item[:badge]
+      when TrueClass, FalseClass
+        %Q{<span class="awesome_admin_layout-notice"></span>}
+      else
+        %Q{<span class="awesome_admin_layout-badge">#{@item[:badge]}</span>}
+      end
     end
 
     def __link_to(name)

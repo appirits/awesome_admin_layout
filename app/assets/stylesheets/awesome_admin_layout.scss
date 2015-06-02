@@ -38,6 +38,19 @@
   background-color: #272c30;
 }
 
+.awesome_admin_layout-badge {
+  font-size: small;
+  color: #fff;
+  padding: 0 10px;
+  background-color: #479ccf;
+  border-radius: 10px;
+}
+
+.awesome_admin_layout-notice {
+  background-color: #479ccf;
+  border-radius: 100%;
+}
+
 .awesome_admin_layout-navigation {
   ul {
     margin: 0;
@@ -72,6 +85,20 @@
     &.active > a {
       color: #fff;
       background-color: #454e57;
+    }
+
+    .awesome_admin_layout-badge {
+      float: right;
+      margin: 7px 0;
+      height: 25px;
+      line-height: 25px;
+    }
+
+    .awesome_admin_layout-notice {
+      float: right;
+      margin: 15px 0;
+      height: 10px;
+      width: 10px;
     }
   }
 

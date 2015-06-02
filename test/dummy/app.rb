@@ -40,6 +40,7 @@ get '/' do
     item 'Analytics' do
       link '/analytics'
       icon 'bar-chart'
+      badge true
     end
 
     divider
@@ -54,6 +55,7 @@ get '/' do
     item 'Extentions' do
       link '/extentions'
       icon 'puzzle-piece'
+      badge 10
     end
 
     item 'Settings' do
