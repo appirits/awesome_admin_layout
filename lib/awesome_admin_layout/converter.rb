@@ -14,7 +14,7 @@ module AwesomeAdminLayout
       @script.to_a.map do |obj|
         case obj
         when String
-          "<li>#{obj}</li>"
+          "<li><a>#{obj}</a></li>"
         when NilClass
           '<li class="divider"></li>'
         end

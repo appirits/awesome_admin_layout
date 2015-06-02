@@ -3,7 +3,12 @@ html
   head
     title
       | Dummy App
+    link rel="stylesheet" href="awesome_admin_layout.css"
+    scss:
+      body {
+        margin: 0;
+        padding: 0;
+      }
   body
-    header
-      == render_admin_layout
-    == yield
+    == render_admin_layout do
+      == yield

@@ -16,8 +16,18 @@ module AwesomeAdminLayout
       script.instance_eval(&block)
     end
 
-    def render_admin_layout
-      AwesomeAdminLayout::Converter.new(@script).to_html
+    def render_admin_layout(&block)
+      <<-HTML
+        <div id="awesome_admin_layout">
+          <header class="awesome_admin_layout-sidebar">
+            #{AwesomeAdminLayout::Converter.new(@script).to_html}
+          </header>
+
+          <main class="awesome_admin_layout-main">
+            #{block.call}
+          </main>
+        </div>
+      HTML
     end
   end
 end
