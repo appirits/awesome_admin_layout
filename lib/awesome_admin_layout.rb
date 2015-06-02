@@ -19,9 +19,14 @@ module AwesomeAdminLayout
     def render_admin_layout(&block)
       <<-HTML
         <div id="awesome_admin_layout">
-          <header class="awesome_admin_layout-sidebar">
-            #{AwesomeAdminLayout::Converter.new(@script).to_html}
-          </header>
+          <nav class="awesome_admin_layout-navigation">
+            <div class="awesome_admin_layout-wrapper">
+              <div class="awesome_admin_layout-brand">
+                AwesomeAdminLayout
+              </div>
+              #{AwesomeAdminLayout::Converter.new(@script).to_html}
+            </div>
+          </nav>
 
           <main class="awesome_admin_layout-main">
             #{block.call}
