@@ -1,6 +1,5 @@
 require 'awesome_admin_layout/version'
-require 'awesome_admin_layout/script'
-require 'awesome_admin_layout/item_script'
+require 'awesome_admin_layout/navigation'
 require 'awesome_admin_layout/converter'
 
 module AwesomeAdminLayout
@@ -10,7 +9,7 @@ module AwesomeAdminLayout
 
   module ClassMethods
     def script
-      @script ||= AwesomeAdminLayout::Script.new
+      @script ||= AwesomeAdminLayout::Navigation.new
     end
 
     def admin_layout(&block)

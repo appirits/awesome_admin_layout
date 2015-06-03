@@ -15,7 +15,7 @@ module AwesomeAdminLayout
         case obj
         when String
           "<li>#{obj}</li>"
-        when AwesomeAdminLayout::ItemScript, AwesomeAdminLayout::Script::Divider, AwesomeAdminLayout::Script::FlexDivider
+        when Navigation::Item, Navigation::Divider, Navigation::FlexDivider
           obj.to_s
         end
       end.join

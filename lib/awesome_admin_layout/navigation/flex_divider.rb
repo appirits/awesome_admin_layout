@@ -1,6 +1,6 @@
 module AwesomeAdminLayout
-  class Script
-    class FlexDivider < AwesomeAdminLayout::Script::Divider
+  class Navigation
+    class FlexDivider < Divider
       def class_name
         ['divider', 'flex-divider']
       end

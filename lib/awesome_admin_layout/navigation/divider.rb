@@ -1,5 +1,5 @@
 module AwesomeAdminLayout
-  class Script
+  class Navigation
     class Divider
       def class_name
         'divider'

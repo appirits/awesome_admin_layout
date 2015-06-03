@@ -1,17 +1,18 @@
-require 'awesome_admin_layout/script/divider'
-require 'awesome_admin_layout/script/flex_divider'
+require 'awesome_admin_layout/navigation/item'
+require 'awesome_admin_layout/navigation/divider'
+require 'awesome_admin_layout/navigation/flex_divider'
 
 module AwesomeAdminLayout
-  class Script
+  class Navigation
     def initialize
       @tree = []
     end
 
     def item(name, &block)
       if block_given?
-        item_script = AwesomeAdminLayout::ItemScript.new(name)
-        item_script.instance_eval(&block)
-        @tree << item_script
+        item = Item.new(name)
+        item.instance_eval(&block)
+        @tree << item
       else
         @tree << name
       end
