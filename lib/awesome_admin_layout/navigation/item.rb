@@ -9,8 +9,8 @@ module AwesomeAdminLayout
         @item[:name] = block_given? ? block : name
       end
 
-      def link(link)
-        @item[:link] = link
+      def link(href, option = {})
+        @item[:link] = option.merge(href: href)
       end
 
       def active(active)
@@ -39,7 +39,7 @@ module AwesomeAdminLayout
         return true if @item[:active]
         return false unless AwesomeAdminLayout.request
         return false unless @item[:link]
-        AwesomeAdminLayout.request.fullpath.split('?').first == @item[:link].split('?').first
+        AwesomeAdminLayout.request.fullpath.split('?').first == @item[:link][:href].split('?').first
       end
 
       def __nested?
@@ -89,8 +89,15 @@ module AwesomeAdminLayout
           %Q{<a href="javascript:void(0);">#{name}</a>}
         else
           return name unless @item[:link]
-          %Q{<a href="#{@item[:link]}">#{name}</a>}
+          return ActionController::Base.helpers.link_to(name.html_safe, @item[:link][:href], @item[:link]) if defined? Rails
+          %Q{<a href="#{@item[:link][:href]}" #{__link_attributes}>#{name}</a>}
         end
+      end
+
+      def __link_attributes
+        attributes = {}
+        attributes = { 'data-method' => @item[:link][:method] } if @item[:link][:method]
+        attributes.map { |(key, value)| %Q{#{key}="#{value}"} }.join(' ')
       end
     end
   end
