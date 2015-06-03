@@ -66,6 +66,14 @@ $awesome_admin_layout-notice-size: 10px;
   border-radius: $radius;
 }
 
+@mixin fa($name, $float: none) {
+  &:before {
+    float: $float;
+    @extend .fa !optional;
+  }
+  @extend .fa-#{$name} !optional;
+}
+
 // Rules
 #awesome_admin_layout {
 }
@@ -160,6 +168,10 @@ $awesome_admin_layout-notice-size: 10px;
       color: $awesome_admin_layout-navigation-item-color;
       text-decoration: none;
 
+      .awesome_admin_layout-text {
+        margin-right: auto;
+      }
+
       &:hover, &:active {
         color: $awesome_admin_layout-navigation-item-hover-color;
 
@@ -179,15 +191,36 @@ $awesome_admin_layout-notice-size: 10px;
     }
 
     .awesome_admin_layout-badge {
-      margin-left: auto;
       height: $awesome_admin_layout-badge-height;
       line-height: $awesome_admin_layout-badge-height;
     }
 
     .awesome_admin_layout-notice {
-      margin-left: auto;
       height: $awesome_admin_layout-notice-size;
       width: $awesome_admin_layout-notice-size;
+    }
+  }
+
+  ul > li > ul {
+    display: none;
+    width: $awesome_admin_layout-navigation-width - 60px;
+    background-color: $awesome_admin_layout-navigation-bg;
+    position: fixed;
+    top: 0;
+    left: 60px;
+    bottom: 0;
+    z-index: 400;
+  }
+
+  ul > li:hover > ul,
+  ul > li:active > ul,
+  ul > li:focus > ul {
+    display: block;
+  }
+
+  li.nested {
+    i:last-child {
+      text-align: right;
     }
   }
 

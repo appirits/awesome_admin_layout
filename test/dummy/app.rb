@@ -24,8 +24,9 @@ get '/' do
       end
 
       item 'Products' do
-        link '/products'
+        nest :products
         icon 'cube'
+        badge true
       end
 
       item 'Users' do
@@ -47,7 +48,7 @@ get '/' do
       divider
 
       item 'Store' do
-        link '/store'
+        nest :store
         icon 'home'
       end
 
@@ -67,8 +68,48 @@ get '/' do
       flex_divider
 
       item 'Profile' do
-        link '/profile'
+        nest :profile
         icon 'gift'
+      end
+    end
+
+    navigation :products do
+      item 'Products' do
+        link '/products'
+      end
+
+      item 'Stocks' do
+        link '/stocks'
+      end
+
+      item 'Categories' do
+        link '/categories'
+      end
+    end
+
+    navigation :store do
+      item 'Pages' do
+        link '/pages'
+      end
+
+      item 'Links' do
+        link '/links'
+      end
+
+      item 'Themes' do
+        link '/themes'
+      end
+    end
+
+    navigation :profile do
+      item 'Edit Profile' do
+        link '/profile/edit'
+      end
+
+      divider
+
+      item 'Sign Out' do
+        link '/signout'
       end
     end
   end

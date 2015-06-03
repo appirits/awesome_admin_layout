@@ -4,18 +4,13 @@ require 'awesome_admin_layout/navigation/flex_divider'
 
 module AwesomeAdminLayout
   class Script
-    def initialize
-      @navigations = {}
-    end
-
     def navigation(key = :default, &block)
-      navigation = Navigation.new
+      navigation = Navigation.new(key)
       navigation.instance_eval(&block)
-      @navigations[key] = navigation
     end
 
     def to_s
-      @navigations[:default]
+      Navigation.find(:default)
     end
 
     alias_method :to_html, :to_s

@@ -4,7 +4,15 @@ require 'awesome_admin_layout/navigation/flex_divider'
 
 module AwesomeAdminLayout
   class Navigation
-    def initialize
+    class << self
+      def find(key)
+        return unless @collection
+        @collection[key]
+      end
+    end
+
+    def initialize(key = :default)
+      __add_to_collection(key)
       @tree = []
     end
 
@@ -31,6 +39,12 @@ module AwesomeAdminLayout
     end
 
     private
+
+    def __add_to_collection(key)
+      collection = self.class.instance_variable_get(:@collection) || {}
+      collection[key] = self
+      self.class.instance_variable_set(:@collection, collection)
+    end
 
     def __convert
       "<ul>#{__convert_items}</ul>"

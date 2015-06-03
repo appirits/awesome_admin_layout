@@ -25,8 +25,12 @@ module AwesomeAdminLayout
         @item[:badge] = badge
       end
 
+      def nest(key)
+        @item[:nest] = Navigation.find(key)
+      end
+
       def to_s
-        %Q{<li#{' class="active"' if __active?}>#{__link_to("#{__name_with_icon}#{__badge}")}</li>}
+        %Q{<li#{" class=\"#{__css_class}\"" unless __css_class.empty?}>#{__link_to("#{__name_with_icon}#{__badge}#{__arrow}")}#{@item[:nest]}</li>}
       end
 
       private
@@ -35,8 +39,23 @@ module AwesomeAdminLayout
         @item[:active] ? true : false
       end
 
+      def __nested?
+        @item[:nest] ? true : false
+      end
+
+      def __arrow
+        '<i class="fa fa-angle-right"></i>' if __nested?
+      end
+
+      def __css_class
+        css_class = []
+        css_class << 'active' if __active?
+        css_class << 'nested' if __nested?
+        css_class.join(' ')
+      end
+
       def __name_with_icon
-        "#{__icon}<span>#{__name}</span>"
+        %Q{#{__icon}<span class="awesome_admin_layout-text">#{__name}</span>}
       end
 
       def __name
@@ -59,8 +78,12 @@ module AwesomeAdminLayout
       end
 
       def __link_to(name)
-        return name unless @item[:link]
-        %Q{<a href="#{@item[:link]}">#{name}</a>}
+        if __nested?
+          %Q{<a href="javascript:void(0);">#{name}</a>}
+        else
+          return name unless @item[:link]
+          %Q{<a href="#{@item[:link]}">#{name}</a>}
+        end
       end
     end
   end
