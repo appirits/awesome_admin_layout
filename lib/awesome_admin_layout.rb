@@ -1,6 +1,7 @@
 require 'awesome_admin_layout/version'
 require 'awesome_admin_layout/script'
 require 'awesome_admin_layout/navigation'
+require 'awesome_admin_layout/engine' if defined? Rails
 
 module AwesomeAdminLayout
   def included(base)
