@@ -15,9 +15,9 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'slim', '~> 3.0.3'
-  spec.add_dependency 'sass', '~> 3.4.14'
-  spec.add_dependency 'coffee-script', '~> 2.4.1'
+  spec.add_dependency 'slim'
+  spec.add_dependency 'sass'
+  spec.add_dependency 'coffee-script'
 
   spec.add_development_dependency 'bundler', '~> 1.9'
   spec.add_development_dependency 'rake', '~> 10.0'

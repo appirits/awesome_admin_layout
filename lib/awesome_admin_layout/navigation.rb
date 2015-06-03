@@ -5,19 +5,21 @@ require 'awesome_admin_layout/navigation/flex_divider'
 
 module AwesomeAdminLayout
   class Navigation
+    @@collection = {}
+
     class << self
       def find(key)
-        return unless @collection
-        @collection[key]
-      end
-
-      def each_pair(&block)
-        @collection.each_pair(&block)
+        return unless @@collection
+        return fail "Navigation '#{key}' was not faound!" unless @@collection.has_key? key
+        element = @@collection[key]
+        code = element.delete(:code)
+        element[:object].instance_eval(&code) if code
+        element[:object]
       end
     end
 
-    def initialize(key = :default)
-      __add_to_collection(key)
+    def initialize(key = :default, &block)
+      __add_to_collection(key, block)
       @tree = []
     end
 
@@ -51,10 +53,8 @@ module AwesomeAdminLayout
 
     private
 
-    def __add_to_collection(key)
-      collection = self.class.instance_variable_get(:@collection) || {}
-      collection[key] = self
-      self.class.instance_variable_set(:@collection, collection)
+    def __add_to_collection(key, block)
+      @@collection[key] = { object: self, code: block }
     end
 
     def __convert

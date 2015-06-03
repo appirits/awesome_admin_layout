@@ -22,15 +22,15 @@ module AwesomeAdminLayout
         <div id="awesome_admin_layout">
           <nav class="awesome_admin_layout-navigation">
             <div class="awesome_admin_layout-wrapper">
-              #{@script.to_html}
+              #{script.to_html}
             </div>
           </nav>
 
           <main class="awesome_admin_layout-main">
             <div class="awesome_admin_layout-navigation-toggle">
               <i class="fa fa-bars"></i>
-            </div
-            #{block.call}
+            </div>
+            #{defined?(::Rails) ? capture(&block) : yield}
           </main>
         </div>
       HTML
