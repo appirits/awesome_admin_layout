@@ -2,7 +2,7 @@ module AwesomeAdminLayout
   module Helpers
     module ClassMethods
       def awesome_admin_layout(&block)
-        before_filter -> { AwesomeAdminLayout.awesome_admin_layout(request, &block) }
+        before_filter -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) }
       end
     end
 

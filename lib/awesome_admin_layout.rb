@@ -5,22 +5,22 @@ require 'awesome_admin_layout/helpers'
 require 'awesome_admin_layout/engine' if defined? Rails
 
 module AwesomeAdminLayout
-  @@request = nil
+  @@context = nil
   @@script = nil
 
   class << self
     def request
-      @@request
+      @@context.request
     end
 
     def script
       @@script
     end
 
-    def awesome_admin_layout(request = nil, &block)
-      @@request = request
+    def awesome_admin_layout(context = nil, &block)
+      @@context = context
       @@script ||= AwesomeAdminLayout::Script.new
-      @@script.instance_eval(&block)
+      @@script.instance_exec(context, &block)
     end
   end
 
