@@ -1,0 +1,1 @@
+../../../app/assets/javascripts/awesome_admin_layout.js

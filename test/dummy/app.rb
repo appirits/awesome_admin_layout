@@ -2,11 +2,16 @@ require 'awesome_admin_layout'
 require 'sinatra'
 require 'slim'
 require 'sass'
+require 'coffee-script'
 
 helpers AwesomeAdminLayout::ClassMethods
 
 get '/awesome_admin_layout.css' do
   scss :awesome_admin_layout
+end
+
+get '/awesome_admin_layout.js' do
+  coffee :awesome_admin_layout
 end
 
 get '/' do
