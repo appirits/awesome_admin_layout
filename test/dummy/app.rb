@@ -4,7 +4,6 @@ require 'slim'
 require 'sass'
 require 'coffee-script'
 
-include AwesomeAdminLayout
 helpers AwesomeAdminLayout::Helpers
 
 get '/awesome_admin_layout.css' do
@@ -16,7 +15,7 @@ get '/awesome_admin_layout.js' do
 end
 
 get '/' do
-  awesome_admin_layout do
+  AwesomeAdminLayout.config do
     navigation do
       brand 'AwesomeAdminLayout'
 

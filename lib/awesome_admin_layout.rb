@@ -10,7 +10,7 @@ module AwesomeAdminLayout
 
   class << self
     def request
-      @@context.request
+      @@context.request if @@context
     end
 
     def script
@@ -22,9 +22,13 @@ module AwesomeAdminLayout
       @@script ||= AwesomeAdminLayout::Script.new
       @@script.instance_exec(context, &block)
     end
-  end
 
-  def awesome_admin_layout(*args, &block)
-    AwesomeAdminLayout.awesome_admin_layout(*args, &block)
+    def config(controller = nil, &block)
+      if defined? Rails
+        (controller || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
+      else
+        awesome_admin_layout(&block)
+      end
+    end
   end
 end
