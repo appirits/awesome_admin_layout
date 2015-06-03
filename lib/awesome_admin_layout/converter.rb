@@ -13,12 +13,10 @@ module AwesomeAdminLayout
     def script_to_html
       @script.to_a.map do |obj|
         case obj
-        when ItemScript
-          obj.to_s
         when String
           "<li>#{obj}</li>"
-        when NilClass
-          '<li class="divider"></li>'
+        when AwesomeAdminLayout::ItemScript, AwesomeAdminLayout::Script::Divider, AwesomeAdminLayout::Script::FlexDivider
+          obj.to_s
         end
       end.join
     end

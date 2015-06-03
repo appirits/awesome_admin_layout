@@ -25,7 +25,7 @@ module AwesomeAdminLayout
     end
 
     def to_s
-      %Q{<li#{' class="active"' if __active?}>#{__link_to("#{__badge}#{__name_with_icon}")}</li>}
+      %Q{<li#{' class="active"' if __active?}>#{__link_to("#{__name_with_icon}#{__badge}")}</li>}
     end
 
     private

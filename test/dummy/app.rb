@@ -62,6 +62,13 @@ get '/' do
       link '/settings'
       icon 'cog'
     end
+
+    flex_divider
+
+    item 'Profile' do
+      link '/profile'
+      icon 'gift'
+    end
   end
 
   slim :index

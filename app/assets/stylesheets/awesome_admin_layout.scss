@@ -1,3 +1,4 @@
+// Variables
 $awesome_admin_layout-navigation-bg: #31373d;
 $awesome_admin_layout-navigation-width: 250px;
 $awesome_admin_layout-navigation-brand-color: #fff;
@@ -17,6 +18,55 @@ $awesome_admin_layout-badge-height: 25px;
 $awesome_admin_layout-notice-bg: #479ccf;
 $awesome_admin_layout-notice-size: 10px;
 
+// Mixins
+@mixin display-flex() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex($flex) {
+  -webkit-box-flex: $flex;
+  -moz-box-flex: $flex;
+  -ms-flex: $flex;
+  -webkit-flex: $flex;
+  flex: $flex;
+}
+
+@mixin flex-direction($direction) {
+  @if $direction == 'column' {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  } else {
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@mixin align-items($align) {
+  -webkit-box-align: $align;
+  -moz-box-align: $align;
+  -ms-flex-align: $align;
+  -webkit-align-items: $align;
+  align-items: $align;
+}
+
+@mixin border-radius($radius) {
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// Rules
 #awesome_admin_layout {
 }
 
@@ -62,25 +112,36 @@ $awesome_admin_layout-notice-size: 10px;
   color: $awesome_admin_layout-badge-color;
   padding: 0 10px;
   background-color: $awesome_admin_layout-badge-bg;
-  border-radius: 10px;
+  @include border-radius(10px);
 }
 
 .awesome_admin_layout-notice {
   background-color: $awesome_admin_layout-notice-bg;
-  border-radius: 100%;
+  @include border-radius(100%);
 }
 
 .awesome_admin_layout-navigation {
   ul {
+    @include display-flex;
+    @include flex-direction(column);
     margin: 0;
     padding: 0;
+    width: 100%;
     font-size: smaller;
+    position: absolute;
+    top: $awesome_admin_layout-navigation-brand-height;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
   li {
+    display: block;
     margin: 0;
     padding: 0;
     list-style: none;
+    height: $awesome_admin_layout-navigation-item-height;
+    min-height: $awesome_admin_layout-navigation-item-height;
 
     i {
       margin-right: 0.5em;
@@ -91,9 +152,9 @@ $awesome_admin_layout-notice-size: 10px;
     }
 
     a {
-      display: block;
-      height: $awesome_admin_layout-navigation-item-height;
-      line-height: $awesome_admin_layout-navigation-item-height;
+      @include display-flex;
+      @include align-items(center);
+      height: 100%;
       padding: 0 20px;
       white-space: nowrap;
       color: $awesome_admin_layout-navigation-item-color;
@@ -118,15 +179,13 @@ $awesome_admin_layout-notice-size: 10px;
     }
 
     .awesome_admin_layout-badge {
-      float: right;
-      margin: (($awesome_admin_layout-navigation-item-height - $awesome_admin_layout-badge-height) / 2) 0;
+      margin-left: auto;
       height: $awesome_admin_layout-badge-height;
       line-height: $awesome_admin_layout-badge-height;
     }
 
     .awesome_admin_layout-notice {
-      float: right;
-      margin: (($awesome_admin_layout-navigation-item-height - $awesome_admin_layout-notice-size) / 2) 0;
+      margin-left: auto;
       height: $awesome_admin_layout-notice-size;
       width: $awesome_admin_layout-notice-size;
     }
@@ -134,5 +193,10 @@ $awesome_admin_layout-notice-size: 10px;
 
   li.divider {
     height: 20px;
+    min-height: 20px;
+  }
+
+  li.flex-divider {
+    @include flex(1);
   }
 }

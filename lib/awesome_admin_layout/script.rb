@@ -1,3 +1,6 @@
+require 'awesome_admin_layout/script/divider'
+require 'awesome_admin_layout/script/flex_divider'
+
 module AwesomeAdminLayout
   class Script
     def initialize
@@ -15,7 +18,11 @@ module AwesomeAdminLayout
     end
 
     def divider
-      @tree << nil
+      @tree << Divider.new
+    end
+
+    def flex_divider
+      @tree << FlexDivider.new
     end
 
     def to_a
