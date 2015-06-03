@@ -9,11 +9,18 @@ module AwesomeAdminLayout
   end
 
   module ClassMethods
+    @@request = nil
+
+    def self.request
+      @@request
+    end
+
     def script
       @script ||= AwesomeAdminLayout::Script.new
     end
 
-    def admin_layout(&block)
+    def admin_layout(request, &block)
+      @@request = request
       script.instance_eval(&block)
     end
 

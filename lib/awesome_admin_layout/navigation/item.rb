@@ -36,7 +36,11 @@ module AwesomeAdminLayout
       private
 
       def __active?
-        @item[:active] ? true : false
+        return true if @item[:active]
+        request = AwesomeAdminLayout::ClassMethods.request
+        return false unless request
+        return false unless @item[:link]
+        request.fullpath.split('?').first == @item[:link].split('?').first
       end
 
       def __nested?
