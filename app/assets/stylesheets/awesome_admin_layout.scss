@@ -13,6 +13,9 @@ $awesome_admin_layout-navigation-item-icon-color: #798c9c;
 $awesome_admin_layout-navigation-item-icon-hover-color: #fff;
 $awesome_admin_layout-navigation-item-icon-active-color: #fff;
 $awesome_admin_layout-navigation-item-height: 40px;
+$awesome_admin_layout-navigation-toggle-color: #444;
+$awesome_admin_layout-navigation-toggle-border: #ccc;
+$awesome_admin_layout-navigation-toggle-bg: #eee;
 $awesome_admin_layout-badge-color: #fff;
 $awesome_admin_layout-badge-bg: #479ccf;
 $awesome_admin_layout-badge-height: 25px;
@@ -75,11 +78,35 @@ $awesome_admin_layout-notice-size: 10px;
   @extend .fa-#{$name} !optional;
 }
 
+@mixin transform($transform) {
+  -moz-transform: $transform;
+  -o-transform: $transform;
+  -ms-transform: $transform;
+  -webkit-transform: $transform;
+  transform: $transform;
+}
+
+@mixin transition($transitions...) {
+  -moz-transition: $transitions;
+  -o-transition: $transitions;
+  -ms-transition: $transitions;
+  -webkit-transition: $transitions;
+  transition: $transitions;
+}
+
+@mixin inline-block($option: "") {
+  display: -moz-inline-stack $option;
+  display: inline-block $option;
+  zoom: 1;
+  *display: inline;
+}
+
 // Rules
 #awesome_admin_layout {
 }
 
 .awesome_admin_layout-navigation {
+  @include transition(transform 200ms ease);
   width: $awesome_admin_layout-navigation-width;
   background-color: $awesome_admin_layout-navigation-bg;
   position: fixed;
@@ -101,9 +128,9 @@ $awesome_admin_layout-notice-size: 10px;
 }
 
 .awesome_admin_layout-main {
+  @include transition(transform 200ms ease);
   padding-left: $awesome_admin_layout-navigation-width;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 15px;
 }
 
 .awesome_admin_layout-navigation-brand {
@@ -150,22 +177,23 @@ $awesome_admin_layout-notice-size: 10px;
 }
 
 .awesome_admin_layout-badge {
+  @include border-radius(10px);
   font-size: smaller;
   color: $awesome_admin_layout-badge-color;
   padding: 0 10px;
   background-color: $awesome_admin_layout-badge-bg;
-  @include border-radius(10px);
 }
 
 .awesome_admin_layout-notice {
-  background-color: $awesome_admin_layout-notice-bg;
   @include border-radius(100%);
+  background-color: $awesome_admin_layout-notice-bg;
 }
 
 .awesome_admin_layout-navigation {
   ul {
     @include display-flex;
     @include flex-direction(column);
+    @include transition(background 200ms ease);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -175,7 +203,6 @@ $awesome_admin_layout-notice-size: 10px;
     bottom: 0;
     left: 0;
     right: 0;
-    transition: background-color 200ms ease;
 
     &.expanded {
       background-color: $awesome_admin_layout-navigation-expanded-bg;
@@ -260,6 +287,8 @@ $awesome_admin_layout-notice-size: 10px;
   }
 
   .awesome_admin_layout-nested-navigation {
+    @include transition(visibility 200ms ease, transform 200ms ease);
+    @include transform(translate3d($awesome_admin_layout-navigation-width, 0, 0));
     visibility: hidden;
     width: $awesome_admin_layout-navigation-width - 65px;
     font-size: larger;
@@ -268,12 +297,10 @@ $awesome_admin_layout-notice-size: 10px;
     top: 0;
     bottom: 0;
     z-index: 400;
-    transition: visibility 200ms ease, transform 200ms ease;
-    transform: translate3d($awesome_admin_layout-navigation-width, 0, 0);
 
     &.open {
+      @include transform(translate3d(65px, 0, 0));
       visibility: visible;
-      transform: translate3d(65px, 0, 0);
     }
   }
 
@@ -288,5 +315,49 @@ $awesome_admin_layout-notice-size: 10px;
 
   li.flex-divider {
     @include flex(1);
+  }
+}
+
+.awesome_admin_layout-navigation-toggle {
+  display: none;
+
+  i {
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 7.5px 10px;
+    color: $awesome_admin_layout-navigation-toggle-color;
+    border: 1px solid $awesome_admin_layout-navigation-toggle-border;
+    @include border-radius(5px);
+
+    &:hover, &:active {
+      background-color: $awesome_admin_layout-navigation-toggle-bg;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .awesome_admin_layout-navigation-toggle {
+    @include inline-block(!important);
+  }
+
+  .awesome_admin_layout-navigation {
+    @include transform(translate3d(-$awesome_admin_layout-navigation-width, 0, 0));
+  }
+
+  .awesome_admin_layout-main {
+    @include transform(translate3d(0, 0, 0));
+    padding-left: 0;
+  }
+
+  #awesome_admin_layout.open {
+    overflow-x: hidden;
+
+    .awesome_admin_layout-navigation {
+      @include transform(translate3d(0, 0, 0));
+    }
+
+    .awesome_admin_layout-main {
+      @include transform(translate3d($awesome_admin_layout-navigation-width, 0, 0));
+    }
   }
 }

@@ -26,6 +26,9 @@ module AwesomeAdminLayout
           </nav>
 
           <main class="awesome_admin_layout-main">
+            <div class="awesome_admin_layout-navigation-toggle">
+              <i class="fa fa-bars"></i>
+            </div
             #{block.call}
           </main>
         </div>
