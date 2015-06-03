@@ -21,9 +21,6 @@ module AwesomeAdminLayout
         <div id="awesome_admin_layout">
           <nav class="awesome_admin_layout-navigation">
             <div class="awesome_admin_layout-wrapper">
-              <div class="awesome_admin_layout-brand">
-                AwesomeAdminLayout
-              </div>
               #{@script.to_html}
             </div>
           </nav>

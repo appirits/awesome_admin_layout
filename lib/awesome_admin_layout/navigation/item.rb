@@ -30,7 +30,7 @@ module AwesomeAdminLayout
       end
 
       def to_s
-        %Q{<li#{" class=\"#{__css_class}\"" unless __css_class.empty?}>#{__link_to("#{__name_with_icon}#{__badge}#{__arrow}")}#{@item[:nest]}</li>}
+        %Q{<li#{" class=\"#{__css_class}\"" unless __css_class.empty?}>#{__link_to("#{__name_with_icon}#{__badge}#{__arrow}")}#{__nest}</li>}
       end
 
       private
@@ -45,6 +45,10 @@ module AwesomeAdminLayout
 
       def __arrow
         '<i class="fa fa-angle-right"></i>' if __nested?
+      end
+
+      def __nest
+        %Q{<div class="awesome_admin_layout-nested-navigation">#{@item[:nest]}</div>} if __nested?
       end
 
       def __css_class

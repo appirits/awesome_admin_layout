@@ -11,6 +11,6 @@ $(->
     event.stopPropagation()
     $navigation.find('.open').removeClass('open')
     $(this).closest('ul').addClass('expanded')
-    $(this).find('ul').addClass('open')
+    $(this).find('.awesome_admin_layout-nested-navigation').addClass('open')
   )
 )

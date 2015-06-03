@@ -17,6 +17,8 @@ end
 get '/' do
   admin_layout do
     navigation do
+      brand 'AwesomeAdminLayout'
+
       item 'Dashboard' do
         link '/dashboard'
         icon 'dashboard'
@@ -79,6 +81,8 @@ get '/' do
     end
 
     navigation :products do
+      brand 'Products'
+
       item 'Products' do
         link '/products'
       end
@@ -93,6 +97,10 @@ get '/' do
     end
 
     navigation :store do
+      brand 'Store' do
+        external_link '/#external'
+      end
+
       item 'Pages' do
         link '/pages'
       end

@@ -1,3 +1,4 @@
+require 'awesome_admin_layout/navigation/brand'
 require 'awesome_admin_layout/navigation/item'
 require 'awesome_admin_layout/navigation/divider'
 require 'awesome_admin_layout/navigation/flex_divider'
@@ -9,6 +10,10 @@ module AwesomeAdminLayout
         return unless @collection
         @collection[key]
       end
+
+      def each_pair(&block)
+        @collection.each_pair(&block)
+      end
     end
 
     def initialize(key = :default)
@@ -16,14 +21,16 @@ module AwesomeAdminLayout
       @tree = []
     end
 
+    def brand(name, &block)
+      brand = Brand.new(name)
+      brand.instance_eval(&block) if block_given?
+      @brand = brand
+    end
+
     def item(name, &block)
-      if block_given?
-        item = Item.new(name)
-        item.instance_eval(&block)
-        @tree << item
-      else
-        @tree << name
-      end
+      item = Item.new(name)
+      item.instance_eval(&block) if block_given?
+      @tree << item
     end
 
     def divider
@@ -32,6 +39,10 @@ module AwesomeAdminLayout
 
     def flex_divider
       @tree << FlexDivider.new
+    end
+
+    def nest(key)
+      @tree << Navigation.find(key)
     end
 
     def to_s
@@ -47,18 +58,11 @@ module AwesomeAdminLayout
     end
 
     def __convert
-      "<ul>#{__convert_items}</ul>"
+      "#{@brand}<ul>#{__convert_items}</ul>"
     end
 
     def __convert_items
-      @tree.map do |obj|
-        case obj
-        when String
-          "<li>#{obj}</li>"
-        when Item, Divider, FlexDivider
-          obj.to_s
-        end
-      end.join
+      @tree.map(&:to_s).join
     end
   end
 end

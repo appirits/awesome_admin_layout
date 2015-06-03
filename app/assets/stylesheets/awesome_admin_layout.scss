@@ -106,14 +106,47 @@ $awesome_admin_layout-notice-size: 10px;
   margin-left: auto;
 }
 
-.awesome_admin_layout-brand {
+.awesome_admin_layout-navigation-brand {
+  @include display-flex;
   width: 100%;
   height: $awesome_admin_layout-navigation-brand-height;
   line-height: $awesome_admin_layout-navigation-brand-height;
-  padding: 0 20px;
   font-weight: bold;
   color: $awesome_admin_layout-navigation-brand-color;
   background-color: $awesome_admin_layout-navigation-brand-bg;
+
+  span {
+    margin: 0 20px;
+  }
+
+  a:link, a:visited, a:hover, a:active {
+    color: $awesome_admin_layout-navigation-brand-color;
+    text-decoration: none;
+  }
+
+  .awesome_admin_layout-nested-navigation & {
+    font-size: smaller;
+    color: $awesome_admin_layout-navigation-item-color;
+    background-color: $awesome_admin_layout-navigation-bg;
+    border-bottom: 1px solid $awesome_admin_layout-navigation-brand-bg;
+  }
+
+  .awesome_admin_layout-external-link {
+    margin-left: auto;
+    margin-right: 10px;
+    padding: 0;
+    height: auto;
+    font-size: smaller;
+
+    i {
+      text-align: right;
+      color: $awesome_admin_layout-navigation-item-icon-color;
+    }
+
+    &:hover i, &:active i {
+      color: $awesome_admin_layout-navigation-item-icon-hover-color;
+    }
+  }
 }
 
 .awesome_admin_layout-badge {
@@ -162,7 +195,7 @@ $awesome_admin_layout-notice-size: 10px;
         text-indent: -99999px;
       }
 
-      li.nested i:last-child {
+      li.nested i.fa-angle-right {
         display: none;
       }
     }
@@ -226,9 +259,10 @@ $awesome_admin_layout-notice-size: 10px;
     }
   }
 
-  ul > li > ul {
+  .awesome_admin_layout-nested-navigation {
     visibility: hidden;
     width: $awesome_admin_layout-navigation-width - 65px;
+    font-size: larger;
     background-color: $awesome_admin_layout-navigation-bg;
     position: fixed;
     top: 0;
@@ -243,10 +277,8 @@ $awesome_admin_layout-notice-size: 10px;
     }
   }
 
-  li.nested {
-    i:last-child {
-      text-align: right;
-    }
+  li.nested i.fa-angle-right {
+    text-align: right;
   }
 
   li.divider {
