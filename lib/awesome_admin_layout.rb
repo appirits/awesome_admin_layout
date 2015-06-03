@@ -1,6 +1,6 @@
 require 'awesome_admin_layout/version'
+require 'awesome_admin_layout/script'
 require 'awesome_admin_layout/navigation'
-require 'awesome_admin_layout/converter'
 
 module AwesomeAdminLayout
   def included(base)
@@ -9,7 +9,7 @@ module AwesomeAdminLayout
 
   module ClassMethods
     def script
-      @script ||= AwesomeAdminLayout::Navigation.new
+      @script ||= AwesomeAdminLayout::Script.new
     end
 
     def admin_layout(&block)
@@ -24,7 +24,7 @@ module AwesomeAdminLayout
               <div class="awesome_admin_layout-brand">
                 AwesomeAdminLayout
               </div>
-              #{AwesomeAdminLayout::Converter.new(@script).to_html}
+              #{@script.to_html}
             </div>
           </nav>
 

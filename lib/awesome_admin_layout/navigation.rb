@@ -26,8 +26,25 @@ module AwesomeAdminLayout
       @tree << FlexDivider.new
     end
 
-    def to_a
-      @tree
+    def to_s
+      __convert
+    end
+
+    private
+
+    def __convert
+      "<ul>#{__convert_items}</ul>"
+    end
+
+    def __convert_items
+      @tree.map do |obj|
+        case obj
+        when String
+          "<li>#{obj}</li>"
+        when Item, Divider, FlexDivider
+          obj.to_s
+        end
+      end.join
     end
   end
 end
