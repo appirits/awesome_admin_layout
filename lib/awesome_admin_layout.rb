@@ -23,9 +23,9 @@ module AwesomeAdminLayout
       @@script.instance_exec(context, &block)
     end
 
-    def config(controller = nil, &block)
+    def setup(options = {}, &block)
       if defined? Rails
-        (controller || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
+        (options[:only] || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
       else
         awesome_admin_layout(&block)
       end
