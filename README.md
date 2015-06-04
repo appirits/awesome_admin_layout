@@ -1,8 +1,6 @@
 # AwesomeAdminLayout
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/awesome_admin_layout`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+AwesomeAdminLayout provides a simple way to add admin panel layout to your application.
 
 ## Installation
 
@@ -14,25 +12,188 @@ gem 'awesome_admin_layout'
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install awesome_admin_layout
+```sh
+$ gem install awesome_admin_layout
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+- [Ruby on Rails](#a-ruby-on-rails)
+- [Sinatra](#b-sinatra)
+
+### a. Ruby on Rails
+
+1. Install [font-awesome-rails](https://github.com/bokmann/font-awesome-rails) and [jquery-rails](https://github.com/rails/jquery-rails).
+
+2. Import a style in `app/assets/stylesheets/application.scss`:
+
+  ```scss
+  @import "awesome_admin_layout";
+  ```
+
+3. Require a script in `app/assets/javascripts/application.coffee`:
+
+  ```coffee
+  #= require awesome_admin_layout
+  ```
+
+4. Create a file named `awesome_admin_layout.rb` in `config/initializers`.
+   And writing the definitions as follows:
+
+  ```ruby
+  #
+  # NOTE: if you only use this layout in admin controller,
+  #       you can write like this:
+  #
+  #       `AwesomeAdminLayout.setup(only: Admin::ApplicationController)`
+  #
+  AwesomeAdminLayout.setup do |controller|
+    navigation do
+      brand 'AwesomeAdminLayout' do
+        external_link controller.root_path
+      end
+
+      item 'Dashboard' do
+        link controller.dashboard_path
+        icon 'dashboard'
+      end
+
+      item 'Orders' do
+        link controller.orders_path
+        icon 'shopping-cart'
+        active true
+      end
+
+      item 'Products' do
+        nest :products
+        icon 'cube'
+        badge true
+      end
+
+      item 'Users' do
+        link controller.users_path
+        icon 'user'
+      end
+
+      item 'Promotions' do
+        link controller.promotions_path
+        icon 'bullhorn'
+      end
+
+      item 'Analytics' do
+        link controller.analytics_path
+        icon 'bar-chart'
+        badge true
+      end
+
+      divider
+
+      item 'Store' do
+        nest :store
+        icon 'home'
+      end
+
+      divider
+
+      item 'Extentions' do
+        link controller.extentions_path
+        icon 'puzzle-piece'
+        badge 10
+      end
+
+      item 'Settings' do
+        link controller.settings_path
+        icon 'cog'
+      end
+
+      flex_divider
+
+      item current_user.email do
+        nest :profile
+        icon 'gift'
+      end
+    end
+
+    navigation :products do
+      brand 'Products'
+
+      item 'Products' do
+        link controller.products_path
+      end
+
+      item 'Stocks' do
+        link controller.stocks_path
+      end
+
+      item 'Categories' do
+        link controller.categories_path
+      end
+    end
+
+    navigation :store do
+      brand 'Store' do
+        external_link '/#external'
+      end
+
+      item 'Pages' do
+        link controller.pages_path
+      end
+
+      item 'Links' do
+        link controller.links_path
+      end
+
+      item 'Themes' do
+        link controller.themes_path
+      end
+    end
+
+    navigation :profile do
+      brand current_user.email
+
+      item 'Edit Profile' do
+        link controller.edit_user_path(current_user)
+      end
+
+      item 'Logout' do
+        link controller.destroy_user_session_path, method: :delete
+      end
+    end
+  end
+  ```
+
+5. Use the helper method in your views.
+
+  ```erb
+  <%== render_admin_layout do %>
+    <%# Put your main contents ... %>
+  <% end %>
+  ```
+
+### b. Sinatra
+
+pending...
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+To set up a dummy application for development, simply do:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```sh
+$ cd test/dummy
+$ bundle exec ruby app.rb
+```
+
+And go to your browser and open `http://localhost:4567`.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/awesome_admin_layout/fork )
+1. Fork it ( https://github.com/appirits/awesome_admin_layout/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
