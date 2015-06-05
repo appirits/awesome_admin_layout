@@ -3,8 +3,11 @@ require 'awesome_admin_layout/script'
 require 'awesome_admin_layout/navigation'
 require 'awesome_admin_layout/helpers'
 require 'awesome_admin_layout/engine' if defined? Rails
+require 'awesome_admin_layout/recognize_path'
 
 module AwesomeAdminLayout
+  extend AwesomeAdminLayout::RecognizePath
+
   @@context = nil
   @@script = nil
 

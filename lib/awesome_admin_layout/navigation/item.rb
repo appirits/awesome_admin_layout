@@ -36,8 +36,7 @@ module AwesomeAdminLayout
       def __active?
         return true if @item[:active]
         return false unless @item[:link]
-        return false unless AwesomeAdminLayout.request
-        AwesomeAdminLayout.request.fullpath.split('?').first.match(/^#{@item[:link][:href].split('?').first}(\/\d*)?$/)
+        AwesomeAdminLayout.active_url? @item[:link][:href]
       end
 
       def __nested?
