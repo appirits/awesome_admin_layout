@@ -9,10 +9,12 @@ module AwesomeAdminLayout
   extend AwesomeAdminLayout::RecognizePath
 
   @@context = nil
+  @@request = nil
   @@script = nil
 
   class << self
     def request
+      return @@request if @@request
       @@context.request if @@context
     end
 
@@ -27,6 +29,7 @@ module AwesomeAdminLayout
     end
 
     def setup(options = {}, &block)
+      @@request = options[:request]
       if defined? Rails
         (options[:only] || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
       else

@@ -14,20 +14,19 @@ get '/awesome_admin_layout.js' do
   coffee :awesome_admin_layout
 end
 
-get '/' do
-  AwesomeAdminLayout.setup do
+get %r{^/(?<page>\w+)?} do
+  AwesomeAdminLayout.setup(request: request) do
     navigation do
       brand 'AwesomeAdminLayout'
 
       item 'Dashboard' do
-        link '/dashboard'
+        link '/'
         icon 'dashboard'
       end
 
       item 'Orders' do
         link '/orders'
         icon 'shopping-cart'
-        active true
       end
 
       item 'Products' do

@@ -1,2 +1,8 @@
+- tiele = 'Home'
+- tiele = params[:page].capitalize if params[:page]
+
 h1
-  | Index
+  = tiele
+
+h2
+  | This is #{tiele} Page.
