@@ -15,7 +15,7 @@ get '/awesome_admin_layout.js' do
 end
 
 get '/' do
-  AwesomeAdminLayout.config do
+  AwesomeAdminLayout.setup do
     navigation do
       brand 'AwesomeAdminLayout'
 
