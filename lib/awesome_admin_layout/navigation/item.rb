@@ -33,8 +33,6 @@ module AwesomeAdminLayout
         %Q{<li#{" class=\"#{__css_class}\"" unless __css_class.empty?}>#{__link_to("#{__name_with_icon}#{__badge}#{__arrow}")}#{__nest}</li>}
       end
 
-      private
-
       def __active?
         return true if @item[:active]
         return false unless @item[:link]
@@ -46,18 +44,32 @@ module AwesomeAdminLayout
         @item[:nest] ? true : false
       end
 
+      def __has_active_nest?
+        return false unless @item[:nest]
+        @item[:nest].__has_active_item?
+      end
+
+      private
+
       def __arrow
         '<i class="fa fa-angle-right"></i>' if __nested?
       end
 
       def __nest
-        %Q{<div class="awesome_admin_layout-nested-navigation">#{@item[:nest]}</div>} if __nested?
+        %Q{<div class="#{__nest_css_class}">#{@item[:nest]}</div>} if __nested?
       end
 
       def __css_class
         css_class = []
-        css_class << 'active' if __active?
+        css_class << 'active' if __active? || __has_active_nest?
         css_class << 'nested' if __nested?
+        css_class.join(' ')
+      end
+
+      def __nest_css_class
+        css_class = []
+        css_class << 'awesome_admin_layout-nested-navigation'
+        css_class << 'open' if __has_active_nest?
         css_class.join(' ')
       end
 

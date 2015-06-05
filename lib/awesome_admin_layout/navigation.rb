@@ -51,6 +51,14 @@ module AwesomeAdminLayout
       __convert
     end
 
+    def __has_active_item?
+      __items.any?(&:__active?)
+    end
+
+    def __has_active_nested_item?
+      __items.any?(&:__has_active_nest?)
+    end
+
     private
 
     def __add_to_collection(key, block)
@@ -58,11 +66,15 @@ module AwesomeAdminLayout
     end
 
     def __convert
-      "#{@brand}<ul>#{__convert_items}</ul>"
+      "#{@brand}<ul#{' class="expanded"' if __has_active_nested_item?}>#{__convert_items}</ul>"
     end
 
     def __convert_items
       @tree.map(&:to_s).join
+    end
+
+    def __items
+      @tree.select { |node| node.is_a? Item }
     end
   end
 end
