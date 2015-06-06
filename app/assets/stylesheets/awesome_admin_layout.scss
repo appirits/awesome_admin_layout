@@ -1,26 +1,26 @@
 // Variables
-$awesome_admin_layout-navigation-bg: #31373d;
-$awesome_admin_layout-navigation-expanded-bg: #212529;
-$awesome_admin_layout-navigation-width: 250px;
-$awesome_admin_layout-navigation-brand-color: #fff;
-$awesome_admin_layout-navigation-brand-bg: #272c30;
-$awesome_admin_layout-navigation-brand-height: 60px;
-$awesome_admin_layout-navigation-item-color: #c3cfd8;
-$awesome_admin_layout-navigation-item-hover-color: #fff;
-$awesome_admin_layout-navigation-item-active-color: #fff;
-$awesome_admin_layout-navigation-item-active-bg: #454e57;
-$awesome_admin_layout-navigation-item-icon-color: #798c9c;
-$awesome_admin_layout-navigation-item-icon-hover-color: #fff;
-$awesome_admin_layout-navigation-item-icon-active-color: #fff;
-$awesome_admin_layout-navigation-item-height: 40px;
-$awesome_admin_layout-navigation-toggle-color: #444;
-$awesome_admin_layout-navigation-toggle-border: #ccc;
-$awesome_admin_layout-navigation-toggle-bg: #eee;
-$awesome_admin_layout-badge-color: #fff;
-$awesome_admin_layout-badge-bg: #479ccf;
-$awesome_admin_layout-badge-height: 25px;
-$awesome_admin_layout-notice-bg: #479ccf;
-$awesome_admin_layout-notice-size: 10px;
+$awesome_admin_layout-navigation-bg: #31373d !default;
+$awesome_admin_layout-navigation-expanded-bg: #212529 !default;
+$awesome_admin_layout-navigation-width: 250px !default;
+$awesome_admin_layout-navigation-brand-color: #fff !default;
+$awesome_admin_layout-navigation-brand-bg: #272c30 !default;
+$awesome_admin_layout-navigation-brand-height: 60px !default;
+$awesome_admin_layout-navigation-item-color: #c3cfd8 !default;
+$awesome_admin_layout-navigation-item-hover-color: #fff !default;
+$awesome_admin_layout-navigation-item-active-color: #fff !default;
+$awesome_admin_layout-navigation-item-active-bg: #454e57 !default;
+$awesome_admin_layout-navigation-item-icon-color: #798c9c !default;
+$awesome_admin_layout-navigation-item-icon-hover-color: #fff !default;
+$awesome_admin_layout-navigation-item-icon-active-color: #fff !default;
+$awesome_admin_layout-navigation-item-height: 40px !default;
+$awesome_admin_layout-navigation-toggle-color: #444 !default;
+$awesome_admin_layout-navigation-toggle-border: #ccc !default;
+$awesome_admin_layout-navigation-toggle-bg: #eee !default;
+$awesome_admin_layout-badge-color: #fff !default;
+$awesome_admin_layout-badge-bg: #479ccf !default;
+$awesome_admin_layout-badge-height: 25px !default;
+$awesome_admin_layout-notice-bg: #479ccf !default;
+$awesome_admin_layout-notice-size: 10px !default;
 
 // Mixins
 @mixin display-flex() {
