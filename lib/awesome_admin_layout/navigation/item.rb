@@ -34,7 +34,7 @@ module AwesomeAdminLayout
       end
 
       def __active?
-        return true if @item[:active]
+        return @item[:active] unless @item[:active].nil?
         return false unless @item[:link]
         AwesomeAdminLayout.active_url? @item[:link][:href]
       end
