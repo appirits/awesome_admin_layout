@@ -20,7 +20,7 @@ $(document).ready(->
     $(this).find('.awesome_admin_layout-nested-navigation').addClass('open')
   )
 
-  $navigation_toggle.on('click', ->
+  $navigation_toggle.on('click', 'i', ->
     $layout.toggleClass('open')
   )
 )

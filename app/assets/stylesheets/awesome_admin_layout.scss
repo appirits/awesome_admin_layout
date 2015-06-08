@@ -94,13 +94,6 @@ $awesome_admin_layout-notice-size: 10px !default;
   transition: $transitions;
 }
 
-@mixin inline-block($option: "") {
-  display: -moz-inline-stack $option;
-  display: inline-block $option;
-  zoom: 1;
-  *display: inline;
-}
-
 // Rules
 #awesome_admin_layout {
 }
@@ -339,7 +332,7 @@ $awesome_admin_layout-notice-size: 10px !default;
 
 @media screen and (max-width: 768px) {
   .awesome_admin_layout-navigation-toggle {
-    @include inline-block(!important);
+    display: block !important;
   }
 
   .awesome_admin_layout-navigation {
