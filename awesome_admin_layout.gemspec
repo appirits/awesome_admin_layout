@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = AwesomeAdminLayout::VERSION
   spec.authors       = ['YOSHIDA Hiroki']
   spec.email         = ['hyoshida@appirits.com']
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = 'Providing a simple way to add admin panel layout.'
+  spec.description   = 'AwesomeAdminLayout provides a simple way to add admin panel layout to your application.'
   spec.homepage      = 'https://github.com/appirits/awesome_admin_layout'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
