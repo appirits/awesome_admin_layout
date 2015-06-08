@@ -23,7 +23,7 @@ $awesome_admin_layout-notice-bg: #479ccf !default;
 $awesome_admin_layout-notice-size: 10px !default;
 
 // Mixins
-@mixin display-flex() {
+@mixin awesome_admin_layout-display-flex() {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -31,7 +31,7 @@ $awesome_admin_layout-notice-size: 10px !default;
   display: flex;
 }
 
-@mixin flex($flex) {
+@mixin awesome_admin_layout-flex($flex) {
   -webkit-box-flex: $flex;
   -moz-box-flex: $flex;
   -ms-flex: $flex;
@@ -39,7 +39,7 @@ $awesome_admin_layout-notice-size: 10px !default;
   flex: $flex;
 }
 
-@mixin flex-direction($direction) {
+@mixin awesome_admin_layout-flex-direction($direction) {
   @if $direction == 'column' {
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
@@ -55,7 +55,7 @@ $awesome_admin_layout-notice-size: 10px !default;
   }
 }
 
-@mixin align-items($align) {
+@mixin awesome_admin_layout-align-items($align) {
   -webkit-box-align: $align;
   -moz-box-align: $align;
   -ms-flex-align: $align;
@@ -63,14 +63,14 @@ $awesome_admin_layout-notice-size: 10px !default;
   align-items: $align;
 }
 
-@mixin border-radius($radius) {
+@mixin awesome_admin_layout-border-radius($radius) {
   -moz-border-radius: $radius;
   -ms-border-radius: $radius;
   -webkit-border-radius: $radius;
   border-radius: $radius;
 }
 
-@mixin fa($name, $float: none) {
+@mixin awesome_admin_layout-fa($name, $float: none) {
   &:before {
     float: $float;
     @extend .fa !optional;
@@ -78,7 +78,7 @@ $awesome_admin_layout-notice-size: 10px !default;
   @extend .fa-#{$name} !optional;
 }
 
-@mixin transform($transform) {
+@mixin awesome_admin_layout-transform($transform) {
   -moz-transform: $transform;
   -o-transform: $transform;
   -ms-transform: $transform;
@@ -86,7 +86,7 @@ $awesome_admin_layout-notice-size: 10px !default;
   transform: $transform;
 }
 
-@mixin transition($transitions...) {
+@mixin awesome_admin_layout-transition($transitions...) {
   -moz-transition: $transitions;
   -o-transition: $transitions;
   -ms-transition: $transitions;
@@ -99,7 +99,7 @@ $awesome_admin_layout-notice-size: 10px !default;
 }
 
 .awesome_admin_layout-navigation {
-  @include transition(transform 200ms ease);
+  @include awesome_admin_layout-transition(transform 200ms ease);
   width: $awesome_admin_layout-navigation-width;
   background-color: $awesome_admin_layout-navigation-bg;
   position: fixed;
@@ -121,13 +121,13 @@ $awesome_admin_layout-notice-size: 10px !default;
 }
 
 .awesome_admin_layout-main {
-  @include transition(transform 200ms ease);
+  @include awesome_admin_layout-transition(transform 200ms ease);
   padding-left: $awesome_admin_layout-navigation-width;
   margin: 15px;
 }
 
 .awesome_admin_layout-navigation-brand {
-  @include display-flex;
+  @include awesome_admin_layout-display-flex;
   width: 100%;
   height: $awesome_admin_layout-navigation-brand-height;
   line-height: $awesome_admin_layout-navigation-brand-height;
@@ -169,7 +169,7 @@ $awesome_admin_layout-notice-size: 10px !default;
 }
 
 .awesome_admin_layout-badge {
-  @include border-radius(10px);
+  @include awesome_admin_layout-border-radius(10px);
   font-size: smaller;
   color: $awesome_admin_layout-badge-color;
   padding: 0 10px;
@@ -177,15 +177,15 @@ $awesome_admin_layout-notice-size: 10px !default;
 }
 
 .awesome_admin_layout-notice {
-  @include border-radius(100%);
+  @include awesome_admin_layout-border-radius(100%);
   background-color: $awesome_admin_layout-notice-bg;
 }
 
 .awesome_admin_layout-navigation {
   ul {
-    @include display-flex;
-    @include flex-direction(column);
-    @include transition(background 200ms ease);
+    @include awesome_admin_layout-display-flex;
+    @include awesome_admin_layout-flex-direction(column);
+    @include awesome_admin_layout-transition(background 200ms ease);
     margin: 0;
     padding: 0;
     width: 100%;
@@ -240,8 +240,8 @@ $awesome_admin_layout-notice-size: 10px !default;
     }
 
     a {
-      @include display-flex;
-      @include align-items(center);
+      @include awesome_admin_layout-display-flex;
+      @include awesome_admin_layout-align-items(center);
       height: 100%;
       padding: 0 20px;
       white-space: nowrap;
@@ -282,8 +282,8 @@ $awesome_admin_layout-notice-size: 10px !default;
   }
 
   .awesome_admin_layout-nested-navigation {
-    @include transition(visibility 200ms ease, transform 200ms ease);
-    @include transform(translate3d($awesome_admin_layout-navigation-width, 0, 0));
+    @include awesome_admin_layout-transition(visibility 200ms ease, transform 200ms ease);
+    @include awesome_admin_layout-transform(translate3d($awesome_admin_layout-navigation-width, 0, 0));
     visibility: hidden;
     width: $awesome_admin_layout-navigation-width - 65px;
     background-color: $awesome_admin_layout-navigation-bg;
@@ -293,7 +293,7 @@ $awesome_admin_layout-notice-size: 10px !default;
     z-index: 400;
 
     &.open {
-      @include transform(translate3d(65px, 0, 0));
+      @include awesome_admin_layout-transform(translate3d(65px, 0, 0));
       visibility: visible;
     }
   }
@@ -309,7 +309,7 @@ $awesome_admin_layout-notice-size: 10px !default;
   }
 
   li.flex-divider {
-    @include flex(1);
+    @include awesome_admin_layout-flex(1);
   }
 }
 
@@ -322,7 +322,7 @@ $awesome_admin_layout-notice-size: 10px !default;
     padding: 7.5px 10px;
     color: $awesome_admin_layout-navigation-toggle-color;
     border: 1px solid $awesome_admin_layout-navigation-toggle-border;
-    @include border-radius(5px);
+    @include awesome_admin_layout-border-radius(5px);
 
     &:hover, &:active {
       background-color: $awesome_admin_layout-navigation-toggle-bg;
@@ -336,11 +336,11 @@ $awesome_admin_layout-notice-size: 10px !default;
   }
 
   .awesome_admin_layout-navigation {
-    @include transform(translate3d(-$awesome_admin_layout-navigation-width, 0, 0));
+    @include awesome_admin_layout-transform(translate3d(-$awesome_admin_layout-navigation-width, 0, 0));
   }
 
   .awesome_admin_layout-main {
-    @include transform(translate3d(0, 0, 0));
+    @include awesome_admin_layout-transform(translate3d(0, 0, 0));
     padding-left: 0;
   }
 
@@ -348,11 +348,11 @@ $awesome_admin_layout-notice-size: 10px !default;
     overflow-x: hidden;
 
     .awesome_admin_layout-navigation {
-      @include transform(translate3d(0, 0, 0));
+      @include awesome_admin_layout-transform(translate3d(0, 0, 0));
     }
 
     .awesome_admin_layout-main {
-      @include transform(translate3d($awesome_admin_layout-navigation-width, 0, 0));
+      @include awesome_admin_layout-transform(translate3d($awesome_admin_layout-navigation-width, 0, 0));
     }
   }
 }
