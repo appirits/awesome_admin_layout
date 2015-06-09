@@ -1,6 +1,6 @@
 require 'awesome_admin_layout/version'
 
-root    = File.expand_path('../../../', __FILE__)
+root    = File.expand_path('../../../../', __FILE__)
 version = AwesomeAdminLayout::VERSION
 tag     = "v#{version}"
 
@@ -16,7 +16,7 @@ namespace :awesome_admin_layout do
   end
 
   task :build => :pkg do
-    sh "gem build #{gemspec} && mv #{gemn}.gem #{root}/pkg/"
+    sh "gem build #{gemspec} && mv #{gem} #{root}/pkg/"
   end
 
   task :install => :build do
