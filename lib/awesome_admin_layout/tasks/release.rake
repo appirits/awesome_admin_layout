@@ -24,6 +24,7 @@ namespace :awesome_admin_layout do
   end
 
   task :push => :build do
+    sh 'git push'
     sh "gem push pkg/#{gem}"
   end
 
