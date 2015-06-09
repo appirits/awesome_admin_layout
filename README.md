@@ -1,5 +1,8 @@
 # AwesomeAdminLayout
 
+[![Build Status](https://img.shields.io/travis/appirits/awesome_admin_layout.svg?style=flat-square)](http://travis-ci.org/appirits/awesome_admin_layout)
+[![Gem Version](https://img.shields.io/gem/v/awesome_admin_layout.svg?style=flat-square)](https://rubygems.org/gems/awesome_admin_layout)
+
 AwesomeAdminLayout provides a simple way to add admin panel layout to your application.
 
 ## Installation
