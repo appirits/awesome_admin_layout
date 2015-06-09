@@ -7,5 +7,6 @@
 /pkg/
 /spec/reports/
 /test/dummy/.sass-cache/
+/test/dummy/log/
 /tmp/
 /vendor/bundle/
