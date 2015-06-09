@@ -19,35 +19,43 @@ class TestRecognizePath < Minitest::Test
   def test_active_url?
     fullpath = '/test'
 
-    test_both_with_rails_and_without_rails do
-      request = MiniTest::Mock.new
-      request.expect :fullpath, fullpath
-      AwesomeAdminLayout.class_variable_set(:@@request, request)
+    request = MiniTest::Mock.new
+    AwesomeAdminLayout.class_variable_set(:@@request, request)
 
+    test_with_rails do
+      request.expect :fullpath, fullpath
+      assert @dummy_class.active_url?(fullpath)
+    end
+
+    test_without_rails do
+      request.expect :fullpath, fullpath
       assert @dummy_class.active_url?(fullpath)
     end
   end
 
   def test_same_url?
-    test_both_with_rails_and_without_rails do
+    test_without_rails do
+      assert @dummy_class.send(:same_url?, '/test', '/test')
+    end
+
+    test_with_rails do
       assert @dummy_class.send(:same_url?, '/test', '/test')
     end
   end
 
   private
 
-  def test_both_with_rails_and_without_rails
-    if defined? Rails
-      # with Rails
-      yield
+  def test_with_rails
+    yield if defined? Rails
+  end
 
-      # without Rails
+  def test_without_rails
+    if defined? Rails
       klass = Object.send(:const_get, :Rails)
       Object.send(:remove_const, :Rails)
       yield
       Object.send(:const_set, :Rails, klass)
     else
-      # without Rails
       yield
     end
   end
