@@ -8,11 +8,19 @@ class TestRecognizePath < Minitest::Test
 
   if defined? Rails
     def test_successed_recognize_path
-      refute_nil @dummy_class.recognize_path('/admin')
+      refute_nil @dummy_class.recognize_path('/products')
     end
 
     def test_failed_recognize_path
-      assert_nil @dummy_class.recognize_path('/admin/products')
+      assert_nil @dummy_class.recognize_path('/products/unknown')
+    end
+
+    def test_successed_recognize_path_for_engine
+      refute_nil @dummy_class.recognize_path('/engine/products')
+    end
+
+    def test_failed_recognize_path_for_engine
+      assert_nil @dummy_class.recognize_path('/engine/products/unknown')
     end
   end
 

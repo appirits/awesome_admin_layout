@@ -12,25 +12,50 @@ app.config.root = File.dirname(__FILE__)
 Rails.backtrace_cleaner.remove_silencers!
 app.initialize!
 
+# Engine
+module Dummy
+  class Engine < Rails::Engine
+    isolate_namespace Dummy
+  end
+end
+
+Dummy::Engine.routes.draw do
+  get ':page', controller: :admin, action: :index
+end
+
 # Routes
 app.routes.draw do
+  mount Dummy::Engine, at: '/engine'
   get ':page', controller: :home, action: :index
 end
 
 # Controllers
 class ApplicationController < ActionController::Base
+  def erb
+    <<-ERB
+<%== render_admin_layout do %>
+  <h1><%= @title %></h1>
+  <h2>This is <%= @title %> Page.</h2>
+<% end %>
+    ERB
+  end
 end
 
 class HomeController < ApplicationController
   def index
     @title = 'Home'
     @title = params[:page].capitalize if params[:page]
-    render :inline => <<-ERB
-<%== render_admin_layout do %>
-  <h1><%= @title %></h1>
-  <h2>This is <%= @title %> Page.</h2>
-<% end %>
-ERB
+    render inline: erb
+  end
+end
+
+module Dummy
+  class AdminController < ApplicationController
+    def index
+      @title = 'Home'
+      @title = params[:page].capitalize if params[:page]
+      render inline: erb
+    end
   end
 end
 
