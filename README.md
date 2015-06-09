@@ -186,7 +186,7 @@ To set up a dummy application for development, simply do:
 
 ```sh
 $ cd test/dummy
-$ bundle exec ruby app.rb
+$ bundle exec ruby sinatra_app.rb
 ```
 
 And go to your browser and open `http://localhost:4567`.

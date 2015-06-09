@@ -18,7 +18,7 @@ module AwesomeAdminLayout
         engine_instance = engine.instance
         # Find the route to the engine, e.g. '/blog' -> Blog::Engine (a.k.a. "mount")
         engine_class = engine_instance.class
-        engine_route = Rails.application.routes.routes.find { |r| r.app.app == engine_class }
+        engine_route = Rails.application.routes.routes.find { |r| app_class_for(r) == engine_class }
         next unless engine_route
 
         # The engine won't recognize the "mount", so strip it off the path,
@@ -46,6 +46,16 @@ module AwesomeAdminLayout
         first_path[:controller] == second_path[:controller]
       else
         first_url.split('?').first.match(/^#{second_url.split('?').first}(\/\d*)?$/)
+      end
+    end
+
+    def app_class_for(route)
+      if Rails.version =~ /^4.2./
+        # for Rails 4.2
+        route.app.app
+      else
+        # for Rails 4.1, 4.0, 3.2
+        route.app
       end
     end
   end

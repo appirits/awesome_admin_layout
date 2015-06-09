@@ -19,7 +19,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sass'
   spec.add_dependency 'coffee-script'
 
-  spec.add_development_dependency 'bundler', '~> 1.9'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'sinatra', '~> 1.4.6'
+  spec.add_development_dependency 'rails', '>= 3.2.0', '< 5'
+  spec.add_development_dependency 'minitest', '>= 4.2.0', '<= 5.7'
 end

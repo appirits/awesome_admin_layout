@@ -4,8 +4,11 @@
 /_yardoc/
 /coverage/
 /doc/
+/gemfiles/.bundle/
+/gemfiles/*.lock
 /pkg/
 /spec/reports/
 /test/dummy/.sass-cache/
+/test/dummy/log/
 /tmp/
 /vendor/bundle/
