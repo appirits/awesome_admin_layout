@@ -308,6 +308,8 @@ $awesome_admin_layout-notice-size: 10px !default;
     top: 0;
     bottom: 0;
     z-index: 400;
+    overflow-x: hidden;
+    overflow-y: auto;
 
     &.open {
       @include awesome_admin_layout-transform(translate3d(65px, 0, 0));
