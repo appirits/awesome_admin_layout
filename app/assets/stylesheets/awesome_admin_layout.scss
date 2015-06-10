@@ -108,6 +108,9 @@ $awesome_admin_layout-notice-size: 10px !default;
   bottom: 0;
   z-index: 300;
   overflow: hidden;
+  // for Firefox and iOS
+  // refs: http://stackoverflow.com/questions/12463658/parent-child-with-position-fixed-parent-overflowhidden-bug/23859719#23859719
+  clip: rect(0, auto, auto, 0);
 
   .awesome_admin_layout-wrapper {
     width: 100%;
