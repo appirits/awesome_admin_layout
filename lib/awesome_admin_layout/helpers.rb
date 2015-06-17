@@ -9,11 +9,7 @@ module AwesomeAdminLayout
     def render_admin_layout(&block)
       <<-HTML
         <div id="awesome_admin_layout">
-          <nav class="awesome_admin_layout-navigation">
-            <div class="awesome_admin_layout-wrapper">
-              #{AwesomeAdminLayout.script.to_html}
-            </div>
-          </nav>
+          #{AwesomeAdminLayout.script.to_html}
 
           <main class="awesome_admin_layout-main">
             <div class="awesome_admin_layout-navigation-toggle">
