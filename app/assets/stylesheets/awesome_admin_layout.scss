@@ -137,6 +137,16 @@ $awesome_admin_layout-notice-size: 10px !default;
 
   span {
     margin: 0 20px;
+
+    &.awesome_admin_layout-image {
+      margin-right: 1em;
+      position: relative;
+      top: -1px;
+    }
+
+    &.awesome_admin_layout-image + span {
+      margin-left: 0;
+    }
   }
 
   a:link, a:visited, a:hover, a:active {
