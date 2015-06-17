@@ -5,6 +5,8 @@ require 'awesome_admin_layout/navigation/flex_divider'
 
 module AwesomeAdminLayout
   class Navigation
+    attr_accessor :parent
+
     @@collection = {}
 
     class << self
@@ -30,7 +32,7 @@ module AwesomeAdminLayout
     end
 
     def item(name, &block)
-      item = Item.new(name)
+      item = Item.new(name, parent: self)
       item.instance_eval(&block) if block_given?
       @tree << item
     end
@@ -43,12 +45,10 @@ module AwesomeAdminLayout
       @tree << FlexDivider.new
     end
 
-    def nest(key)
-      @tree << Navigation.find(key)
-    end
-
     def to_s
-      __convert
+      __wrapper do
+        "#{@brand}<ul>#{__convered_nodes}</ul>"
+      end
     end
 
     def __has_active_item?
@@ -65,12 +65,19 @@ module AwesomeAdminLayout
       @@collection[key] = { object: self, code: block }
     end
 
-    def __convert
-      "#{@brand}<ul#{' class="expanded"' if __has_active_nested_item?}>#{__convert_items}</ul>"
+    def __wrapper
+      return yield if parent
+      <<-WRAPPER
+        <nav class="awesome_admin_layout-navigation #{'expanded' if __has_active_nested_item?}">
+          <div class="awesome_admin_layout-wrapper">
+            #{yield}
+          </div>
+        </nav>
+      WRAPPER
     end
 
-    def __convert_items
-      @tree.map(&:to_s).join
+    def __convered_nodes
+      @tree.join
     end
 
     def __items

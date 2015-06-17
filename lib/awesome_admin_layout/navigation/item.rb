@@ -1,8 +1,11 @@
 module AwesomeAdminLayout
   class Navigation
     class Item
-      def initialize(name = nil)
+      attr_reader :parent
+
+      def initialize(name = nil, options = {})
         @item = { name: name }
+        @parent = options[:parent]
       end
 
       def name(name = nil, &block)
@@ -27,6 +30,7 @@ module AwesomeAdminLayout
 
       def nest(key)
         @item[:nest] = Navigation.find(key)
+        @item[:nest].parent = parent
       end
 
       def to_s

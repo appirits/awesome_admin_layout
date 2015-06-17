@@ -11,12 +11,12 @@ $(document).ready(->
   #
   $navigation.on('click', 'li:not(.nested)', ->
     $navigation.find('.open').removeClass('open')
-    $navigation.find('.expanded').removeClass('expanded')
+    $navigation.removeClass('expanded')
   )
 
   $navigation.on('click', 'li.nested', (event) ->
     $navigation.find('.open').removeClass('open')
-    $(this).closest('ul').addClass('expanded')
+    $navigation.addClass('expanded')
     $(this).find('.awesome_admin_layout-nested-navigation').addClass('open')
   )
 
