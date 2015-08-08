@@ -28,7 +28,7 @@ module AwesomeAdminLayout
       @@script.instance_exec(context, &block)
     end
 
-    def setup(options = {}, &block)
+    def define(options = {}, &block)
       @@request = options[:request]
       if defined? Rails
         (options[:only] || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
@@ -36,5 +36,8 @@ module AwesomeAdminLayout
         awesome_admin_layout(&block)
       end
     end
+
+    # TODO: Deprecated
+    alias_method :setup, :define
   end
 end
