@@ -27,6 +27,7 @@ module AwesomeAdminLayout
 
         begin
           recognized_path = engine_instance.routes.recognize_path(path_for_engine, options)
+          break
         rescue ActionController::RoutingError => e
           Rails.logger.debug "[#{engine}] ActionController::RoutingError: #{e.message}"
         end
