@@ -6,10 +6,10 @@ module AwesomeAdminLayout
       end
     end
 
-    def render_admin_layout(&block)
+    def render_admin_layout(key = nil, &block)
       <<-HTML
         <div id="awesome_admin_layout">
-          #{AwesomeAdminLayout.script.to_html}
+          #{AwesomeAdminLayout.script.to_html(key)}
 
           <main class="awesome_admin_layout-main">
             <div class="awesome_admin_layout-navigation-toggle">
