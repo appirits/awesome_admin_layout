@@ -9,8 +9,9 @@ module AwesomeAdminLayout
     end
 
     config.to_prepare do
-      Dir.glob(Rails.root.join('app/navigations/**/*.rb')).each do |c|
-        Rails.configuration.cache_classes ? require_dependency(c) : load(c)
+      engines = [Rails] + Rails::Engine.subclasses
+      engines.each do |engine|
+        Dir.glob(engine.root.join('app/navigations/**/*.rb')).each { |c| require_dependency(c) }
       end
     end
   end

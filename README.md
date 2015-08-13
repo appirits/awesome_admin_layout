@@ -46,7 +46,7 @@ $ gem install awesome_admin_layout
   #= require awesome_admin_layout
   ```
 
-4. Create a file named `awesome_admin_layout.rb` in `config/initializers`.
+4. Create a file into `app/navigations`.
    And writing the definitions as follows:
 
   ```ruby
