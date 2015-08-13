@@ -174,7 +174,7 @@ $ gem install awesome_admin_layout
 5. Use the helper method in your views.
 
   ```erb
-  <%== render_admin_layout do %>
+  <%= render_admin_layout do %>
     <%# Put your main contents ... %>
   <% end %>
   ```

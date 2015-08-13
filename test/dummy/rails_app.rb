@@ -33,7 +33,7 @@ end
 class ApplicationController < ActionController::Base
   def erb
     <<-ERB
-<%== render_admin_layout do %>
+<%= render_admin_layout do %>
   <h1><%= @title %></h1>
   <h2>This is <%= @title %> Page.</h2>
 <% end %>

@@ -7,7 +7,7 @@ module AwesomeAdminLayout
     end
 
     def render_admin_layout(key = nil, &block)
-      <<-HTML
+      html = <<-HTML
         <div id="awesome_admin_layout">
           #{AwesomeAdminLayout.script.to_html(key)}
 
@@ -19,6 +19,8 @@ module AwesomeAdminLayout
           </main>
         </div>
       HTML
+      html = html.html_safe if html.respond_to? :html_safe
+      html
     end
   end
 end
