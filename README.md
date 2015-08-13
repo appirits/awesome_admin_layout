@@ -54,9 +54,9 @@ $ gem install awesome_admin_layout
   # NOTE: if you only use this layout in admin controller,
   #       you can write like this:
   #
-  #       `AwesomeAdminLayout.setup(only: Admin::ApplicationController)`
+  #       `AwesomeAdminLayout.define(only: Admin::ApplicationController)`
   #
-  AwesomeAdminLayout.setup do |controller|
+  AwesomeAdminLayout.define do |controller|
     navigation do
       brand 'AwesomeAdminLayout' do
         external_link controller.root_path

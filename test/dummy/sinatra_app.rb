@@ -15,7 +15,7 @@ get '/awesome_admin_layout.js' do
 end
 
 get %r{^/(?<page>\w+)?} do
-  AwesomeAdminLayout.setup(request: request) do
+  AwesomeAdminLayout.define(request: request) do
     navigation do
       brand 'AwesomeAdminLayout'
 
