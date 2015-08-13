@@ -1,3 +1,13 @@
+## 0.2.0 (August 13, 2015) ##
+
+*   Provides the `app/navigations` directory.
+
+*   Implement the navigation key.
+    You are able to define the multiple navigations.
+
+*   Improve the look and feel of the navigation.
+
+
 ## 0.1.2 (June 17, 2015) ##
 
 *   Implement the functionality for the brand image.
