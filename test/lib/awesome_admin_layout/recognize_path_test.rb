@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class TestRecognizePath < Minitest::Test
+class AwesomeAdminLayout::RecognizePathTest < Minitest::Test
   def setup
     @dummy_class = Class.new
     @dummy_class.send(:extend, AwesomeAdminLayout::RecognizePath)
