@@ -11,7 +11,7 @@ module AwesomeAdminLayout
 
     def to_s(key = nil)
       key ||= :default
-      Navigation.find(key)
+      Navigation.find(key).to_s
     end
 
     alias_method :to_html, :to_s

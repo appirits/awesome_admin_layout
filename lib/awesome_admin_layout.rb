@@ -28,13 +28,17 @@ module AwesomeAdminLayout
       @@script.instance_exec(context, &block)
     end
 
+    def normal_define(&block)
+      awesome_admin_layout(&block)
+    end
+
+    def eager_define(options = {}, &block)
+      (options[:only] || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
+    end
+
     def define(options = {}, &block)
-      @@request = options[:request]
-      if defined? Rails
-        (options[:only] || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
-      else
-        awesome_admin_layout(&block)
-      end
+      @@request = options.delete(:request)
+      defined?(Rails) ? eager_define(options, &block) : normal_define(&block)
     end
 
     # TODO: Deprecated
