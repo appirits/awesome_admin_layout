@@ -9,7 +9,7 @@ module AwesomeAdminLayout
     end
 
     config.to_prepare do
-      engines = [Rails] + Rails::Engine.subclasses
+      engines = Rails::Engine.subclasses + [Rails]
       engines.each do |engine|
         Dir.glob(engine.root.join('app/navigations/**/*.rb')).each { |c| require_dependency(c) }
       end
