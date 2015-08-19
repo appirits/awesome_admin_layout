@@ -1,3 +1,10 @@
+## 0.2.1 (August 19, 2015) ##
+
+*   Fix the order to load the definitions.
+
+*   Fix the warnings in the gemspec dependency.
+
+
 ## 0.2.0 (August 13, 2015) ##
 
 *   Provides the `app/navigations` directory.
