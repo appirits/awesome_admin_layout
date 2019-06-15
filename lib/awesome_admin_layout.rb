@@ -33,7 +33,7 @@ module AwesomeAdminLayout
     end
 
     def eager_define(options = {}, &block)
-      (options[:only] || ActionController::Base).send(:before_filter, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
+      (options[:only] || ActionController::Base).send(:before_action, -> { AwesomeAdminLayout.awesome_admin_layout(self, &block) })
     end
 
     def define(options = {}, &block)
