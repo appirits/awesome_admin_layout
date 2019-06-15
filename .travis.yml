@@ -1,8 +1,8 @@
 language:
   - ruby
 rvm:
-  - 2.1.2
   - 2.2.0
+  - 2.6.3
   - ruby-head
 gemfile:
   - gemfiles/rails_32.gemfile
@@ -14,7 +14,7 @@ gemfile:
 matrix:
   exclude:
     - rvm: 2.2.0
-      gemfile: gemfiles/rails_32.gemfile
+      gemfile: gemfiles/rails_52.gemfile
     - rvm: ruby-head
       gemfile: gemfiles/rails_32.gemfile
   allow_failures:
